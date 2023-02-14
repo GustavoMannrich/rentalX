@@ -34,6 +34,9 @@ export async function ensureAuthenticated(
             throw new AppError('User does not exists!', 401);
         }
 
+        // O user foi adicionado na interface do Request no @types/express/index.ts
+        request.user = { id: user_id };
+
         next();
     } catch (error) {
         throw new AppError('Invalid token!', 401);
