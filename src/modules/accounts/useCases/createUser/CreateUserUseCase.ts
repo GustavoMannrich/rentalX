@@ -27,7 +27,7 @@ class CreateUserUseCase {
 
         const passwordHash = await hash(password, 8);
 
-        await this.usersReposistory.create({
+        await this.usersReposistory.createOrUpdate({
             name,
             email,
             driver_license,
