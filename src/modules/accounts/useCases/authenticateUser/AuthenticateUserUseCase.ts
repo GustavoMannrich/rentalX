@@ -1,7 +1,7 @@
+import { AppError } from '@shared/infra/http/errors/AppError';
 import { compare } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
 import { inject, injectable } from 'tsyringe';
-import { AppError } from '../../../../errors/AppError';
 import { IUsersRepository } from '../../repositories/IUserRepository';
 
 interface IRequest {
