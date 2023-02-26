@@ -9,17 +9,19 @@ import { ICarsRepository } from "@modules/cars/repositories/ICarsRepository";
 import { CarsRepository } from "@modules/cars/infra/typeorm/repositories/CarsRepository";
 import { ICarsImagesRepository } from "@modules/cars/repositories/ICarsImagesRepository";
 import { CarsImagesRepository } from "@modules/cars/infra/typeorm/repositories/CarsImagesRepository";
+import { IRentalsRepository } from "@modules/rentals/repositories/IRentalsRepository";
+import { RentalsRepository } from "@modules/rentals/infra/typeorm/repositories/RentalsRepository";
+import "@shared/container/providers";
 
-// Especifica que o CategoriesRepository é um singleton
+// Especifica que o Repository é um singleton
 container.registerSingleton<ICategoriesRepository>("CategoriesRepository", CategoriesRepository);
 
-// Especifica que o SpecificationsRepository é um singleton
 container.registerSingleton<ISpecificationsRepository>("SpecificationsRepository", SpecificationsRepository);
 
-// Especifica que o UserRepository é um singleton
 container.registerSingleton<IUsersRepository>("UsersRepository", UsersRepository);
 
-// Especifica que o CarsRepository é um singleton
 container.registerSingleton<ICarsRepository>("CarsRepository", CarsRepository);
 
 container.registerSingleton<ICarsImagesRepository>("CarsImagesRepository", CarsImagesRepository);
+
+container.registerSingleton<IRentalsRepository>("RentalsRepository", RentalsRepository);
