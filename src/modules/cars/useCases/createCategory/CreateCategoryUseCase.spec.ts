@@ -6,7 +6,7 @@ let createCategoryUseCase: CreateCategoryUseCase;
 let categoriesRepositoryInMemory: CategoriesRepositoryInMemory;
 
 describe('Create Category', () => {
-    beforeAll(() => {
+    beforeEach(() => {
         categoriesRepositoryInMemory = new CategoriesRepositoryInMemory();
         createCategoryUseCase = new CreateCategoryUseCase(
             categoriesRepositoryInMemory
@@ -29,18 +29,15 @@ describe('Create Category', () => {
     });
 
     it('should not be able to create categories with duplicate names', async () => {
-        expect(async () => {
-            const category = {
-                name: 'Category Test',
-                description: 'Category Description Test',
-            };
+        const category = {
+            name: 'Category Test',
+            description: 'Category Description Test',
+        };
 
-            await createCategoryUseCase.execute(category);
+        await createCategoryUseCase.execute(category);
 
-            const categoryCreated =
-                await categoriesRepositoryInMemory.findByName(category.name);
-
-            expect(categoryCreated).toHaveProperty('id');
-        }).rejects.toBeInstanceOf(AppError);
+        await expect(createCategoryUseCase.execute(category)).rejects.toEqual(
+            new AppError('Category already exists!')
+        );
     });
 });
