@@ -21,7 +21,6 @@ class CreateUserUseCase {
         );
 
         if (userAlreadyExists) {
-            console.log('USER', userAlreadyExists);
             throw new AppError('User already exists!');
         }
 
